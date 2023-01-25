@@ -1,5 +1,6 @@
 import pygame
 import time
+import random
 
 # Initialize pygame
 pygame.init()
@@ -38,6 +39,16 @@ color = (255, 0, 0)
 # Create a clock to control the speed of the game
 clock = pygame.time.Clock()
 
+# Create the food
+foodx = 0
+foody = 0
+food_color = (0, 255, 0)
+
+def create_food():
+    global foodx, foody
+    foodx = round(random.randrange(0, width - segment_width) / 10.0) * 10.0
+    foody = round(random.randrange(0, height - segment_height) / 10.0) * 10.0
+
 # Main game loop
 running = True
 while running:
@@ -49,11 +60,21 @@ while running:
     x += x_change
     y += y_change
 
+    # Clear the screen
+    win.fill((0, 0, 0))
+
     # Draw the snake
     pygame.draw.rect(win, color, (x, y, segment_width, segment_height))
 
+    # Draw the food
+    pygame.draw.rect(win, food_color, (foodx, foody, segment_width, segment_height))
+
     # Update the screen
     pygame.display.update()
+
+    # Check if the snake has collided with the food
+    if x == foodx and y == foody:
+        create_food()
 
     # Set the speed of the game
     clock.tick(speed)
