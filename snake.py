@@ -55,6 +55,19 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x_change = -segment_width
+                y_change = 0
+            elif event.key == pygame.K_RIGHT:
+                x_change = segment_width
+                y_change = 0
+            elif event.key == pygame.K_UP:
+                y_change = -segment_height
+                x_change = 0
+            elif event.key == pygame.K_DOWN:
+                y_change = segment_height
+                x_change = 0
 
     # Move the snake
     x += x_change
