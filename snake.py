@@ -37,6 +37,7 @@ while running:
     if snake[0][0] == food[0] and snake[0][1] == food[1]:
         food = (snake[0][0]+10, snake[0][1]+10)
         score += 1
+        snake.append((snake[-1][0], snake[-1][1]))
 
     # Move the rest of the snake
     for i in range(len(snake) - 1, 0, -1):
